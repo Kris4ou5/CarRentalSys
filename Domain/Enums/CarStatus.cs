@@ -8,8 +8,8 @@ namespace CarRentalSys.Domain.Enums
 {
     public enum CarStatus
     {
-        Available,
-        Rented,
-        InMaintenance
+        Available, //Налична
+        Rented, //Наета
+        InMaintenance //в сервиза
     }
 }

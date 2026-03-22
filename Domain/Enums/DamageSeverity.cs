@@ -8,8 +8,8 @@ namespace CarRentalSys.Domain.Enums
 {
     public enum DamageSeverity
     {
-        Minor,
-        Moderate,
-        Severe
+        Minor, //Минимална щета
+        Moderate, //Средна щета
+        Severe //Сериозна щета
     }
 }

@@ -8,9 +8,9 @@ namespace CarRentalSys.Domain.Enums
 {
     public enum RentalStatus
     {
-        Pending,
-        Active,
-        Completed,
-        Canncelled
+        Pending, //Създадено
+        Active, //наема тече
+        Completed, //Приключи
+        Canncelled //Отменен
     }
 }
