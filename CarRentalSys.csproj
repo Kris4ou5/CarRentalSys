@@ -15,8 +15,6 @@
   <ItemGroup>
     <Folder Include="Domain\" />
     <Folder Include="Infrastructure\" />
-    <Folder Include="ConsoleUI\" />
-    <Folder Include="Application\" />
   </ItemGroup>
 
 </Project>
