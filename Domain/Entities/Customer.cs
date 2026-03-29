@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarRentalSys.Domain.Entities
 {
-    internal class Customer
+    public class Customer
     {
         public int Id { get; private set; }
         public string FullName { get; private set; }
