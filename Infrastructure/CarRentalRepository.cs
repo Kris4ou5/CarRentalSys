@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarRentalSys.Infrastructure
 {
-    internal class InspectionsRepository
+    internal class CarRentalRepository
     {
     }
 }
