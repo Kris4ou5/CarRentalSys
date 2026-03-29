@@ -8,5 +8,6 @@ namespace CarRentalSys.Infrastructure
 {
     internal class CarRentalRepository
     {
+        
     }
 }
