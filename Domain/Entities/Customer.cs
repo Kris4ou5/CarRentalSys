@@ -8,6 +8,32 @@ namespace CarRentalSys.Domain.Entities
 {
     internal class Customer
     {
+        public int Id { get; private set; }
+        public string FullName { get; private set; }
+        public string DriverLicenseNumber { get; private set; }
+        public string Phone { get; private set; }
+        public string Email { get; private set; }
 
+        public List<Rentals> Rentals { get; private set; } = new List<Rentals>();
+
+        public Customer(int id, string fullName, string driverLicenseNumber, string phone, string email) 
+        {
+            Id = id;
+            FullName = fullName;
+            DriverLicenseNumber = driverLicenseNumber;
+            Phone = phone;
+            Email = email;
+        }
+
+        public void UpdateContactInfo(string phone, string email) 
+        {
+            Phone = phone;
+            Email = email;
+        }
+
+        public void AddRental(Rentals rental) 
+        {
+            Rentals.Add(rental);
+        }
     }
 }
