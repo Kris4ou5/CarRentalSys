@@ -8,14 +8,14 @@ namespace CarRentalSys.Domain.Enums
 {
     public enum CarCategory
     {
-        Economy,
-        Compact,
-        Intermediate,
-        Standard,
-        SUV,
-        Luxury,
-        Sports,
-        Van,
-        Electric
+        Economy = 4,
+        Compact = 2,
+        Intermediate = 5,
+        Standard = 6,
+        SUV = 7,
+        Luxury = 10,
+        Sports = 8,
+        Van = 6,
+        Electric = 5,
     }
 }
