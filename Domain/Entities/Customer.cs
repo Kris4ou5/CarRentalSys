@@ -8,5 +8,6 @@ namespace CarRentalSys.Domain.Entities
 {
     internal class Customer
     {
+
     }
 }

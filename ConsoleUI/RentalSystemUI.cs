@@ -8,5 +8,6 @@ namespace CarRentalSys.ConsoleUI
 {
     internal class RentalSystemUI
     {
+
     }
 }

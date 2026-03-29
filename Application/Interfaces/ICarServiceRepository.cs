@@ -8,5 +8,6 @@ namespace CarRentalSys.Application.Interfaces
 {
     internal class ICarServiceRepository
     {
+
     }
 }
