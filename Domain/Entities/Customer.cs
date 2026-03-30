@@ -12,7 +12,7 @@ namespace CarRentalSys.Domain.Entities
         public string FullName { get; private set; }
         public string DriverLicenseNumber { get; private set; }
         public string Phone { get; private set; }
-        public string Email { get; private set; }
+        public string Email { get; private set; } = string.Empty;
 
         public List<Rentals> Rentals { get; private set; } = new List<Rentals>();
 
