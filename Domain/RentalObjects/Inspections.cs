@@ -19,10 +19,14 @@ namespace CarRentalSys.Domain.RentalObjects
           Id = id;
           RentalID = rentalid;
           Damages = damages;
-          foreach(var dmg  in Damages)
-          {
+        }
+
+        public void CalculateDamagesCost()
+        {
+            foreach (var dmg in Damages)
+            {
                 TotalCost += dmg.damageCost;
-          }
+            }
         }
 
 
