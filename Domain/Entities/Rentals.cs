@@ -3,6 +3,7 @@ using CarRentalSys.Domain.RentalObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,8 @@ namespace CarRentalSys.Domain.Entities
     public class Rentals
     {
         public int Id { get; private set; }
-
         public int CustomerId { get; private set; }
-        public Customer Customer { get; private set; }
-
-        public int CarId { get; private set; }
-        public Car Car { get; private set; }
+        public int CarId { get; private set; }   
 
         public DateTime StartDate { get; private set; }
         public DateTime EndDate { get; private set; }
@@ -30,14 +27,15 @@ namespace CarRentalSys.Domain.Entities
         public Inspections? Inspection { get; private set; }
         public Payments? Payment { get; private set; }
 
-        public Rentals(int id, Customer customer, Car car, DateTime startDate, DateTime endDate)
+        public Rentals(int id,int carId,int customerId, DateTime startDate, DateTime endDate)
         {
-            Id = id;
-            Customer = customer;
-            CustomerId = customer.Id;
-
-            Car = car;
-            CarId = car.Id;
+            if (endDate < startDate)
+                throw new ArgumentException("End date cannot be before start date");
+            if(id <= 0 || customerId <=0 || carId<=0)
+                throw new ArgumentException("ID cannot be negative");
+            Id = id; 
+            CustomerId = customerId;
+            CarId = carId;
 
             StartDate = startDate;
             EndDate = endDate;
@@ -47,35 +45,22 @@ namespace CarRentalSys.Domain.Entities
 
         public int GetTotalDays()
         {
-            return (EndDate - StartDate).Days;
+            return (EndDate - StartDate).Days+1;
         }
 
         public void SetPrice(decimal price)
         {
+            if (price < 0)
+                throw new ArgumentException("Price cannot be negative");
             TotalPrice = price;
         }
 
         public void SetDeposit(decimal deposit)
         {
+            if (deposit < 0)
+                throw new ArgumentException("Deposit cannot be negative");
             Deposit = deposit;
-        }
-
-        public void StartRental()
-        {
-            Status = RentalStatus.Active;
-            Car.ChangeStatus(CarStatus.Rented);
-        }
-
-        public void CompleteRental()
-        {
-            Status = RentalStatus.Completed;
-            Car.ChangeStatus(CarStatus.Available);
-        }
-
-        public void CancelRental()
-        {
-            Status = RentalStatus.Canncelled;
-        }
+        }  
 
         public void AddInspection(Inspections inspection)
         {
