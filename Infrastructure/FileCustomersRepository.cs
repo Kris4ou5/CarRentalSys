@@ -21,5 +21,20 @@ namespace CarRentalSys.Infrastructure
             var saved = _storage.Load();
             return saved.Customers;
         }
+
+        public Customer GetById(int id)
+        {
+            var saved = _storage.Load();
+
+            foreach (var customer in saved.Customers)
+            {
+                if (customer.Id == id)
+                    return customer;
+            }
+
+            throw new ArgumentException($"No customer with ID:{id} found ");
+        }
+
+
     }
 }
