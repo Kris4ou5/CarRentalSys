@@ -4,11 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarRentalSys.Application.Interfaces;
 using CarRentalSys.Domain.Entities;
 
 namespace CarRentalSys.Infrastructure
 {
-    public class FileRentalsRepository
+    public class FileRentalsRepository : IRentalRepository
     {
         private readonly FileStorage _storage;
 

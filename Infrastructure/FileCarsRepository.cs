@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarRentalSys.Application.Interfaces;
 using CarRentalSys.Domain.Entities;
 
 namespace CarRentalSys.Infrastructure
 {
-    public class FileCarsRepository
+    public class FileCarsRepository : ICarRepository
     {
         private readonly FileStorage _storage;
 
