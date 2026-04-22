@@ -70,6 +70,14 @@ namespace CarRentalSys.Application.Services
             return car.Status == CarStatus.Available;
         }
 
+        public Car GetCarById(int id)
+        {
+            if (id <= 0)
+                throw new ArgumentException("Invalid car ID");
+
+            return _carRepo.GetById(id);
+        }
+
 
     }
 }
