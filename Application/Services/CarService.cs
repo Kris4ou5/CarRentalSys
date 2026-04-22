@@ -35,7 +35,7 @@ namespace CarRentalSys.Application.Services
 
         public void ChangeCarStatus(int carId, CarStatus newStatus)
         {
-            var car = _carRepo.GetById(carId);
+            var car = _carRepo.GetById(carId);  
             if (car == null) throw new KeyNotFoundException($"Car with ID {carId} not found.");
 
             car.ChangeStatus(newStatus);
