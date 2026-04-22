@@ -47,6 +47,10 @@ namespace CarRentalSys.Application.Services
             ChangeCarStatus(carId, CarStatus.InMaintenance);
         }
 
+        public IReadOnlyList<Car> GetAllCars()
+        {
+            return _carRepo.GetAll();
+        }
 
     }
 }
