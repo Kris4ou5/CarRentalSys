@@ -61,6 +61,16 @@ namespace CarRentalSys.Application.Services
                 .ToList();
         }
 
+        public bool IsCarAvailable(int carId)
+        {
+            var car = _carRepo.GetById(carId);
+
+            if (car == null) return false;
+
+            return car.Status == CarStatus.Available;
+        }
+
+
     }
 }
 
