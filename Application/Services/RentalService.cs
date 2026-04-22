@@ -8,5 +8,6 @@ namespace CarRentalSys.Application.Services
 {
     internal class RentalService
     {
+
     }
 }
