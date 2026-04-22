@@ -42,6 +42,11 @@ namespace CarRentalSys.Application.Services
             _carRepo.Save(car);
         }
 
+        public void SendToMaintenance(int carId)
+        {
+            ChangeCarStatus(carId, CarStatus.InMaintenance);
+        }
+
 
     }
 }
