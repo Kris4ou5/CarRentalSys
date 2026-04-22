@@ -8,5 +8,6 @@ namespace CarRentalSys.Domain.RentalObjects
 {
     internal class Locations
     {
+
     }
 }
