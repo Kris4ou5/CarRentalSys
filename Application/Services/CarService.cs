@@ -52,6 +52,15 @@ namespace CarRentalSys.Application.Services
             return _carRepo.GetAll();
         }
 
+        public List<Car> GetAvailableCars()
+        {
+            var cars = _carRepo.GetAll();
+
+            return cars
+                .Where(c => c.Status == CarStatus.Available)
+                .ToList();
+        }
+
     }
 }
 
