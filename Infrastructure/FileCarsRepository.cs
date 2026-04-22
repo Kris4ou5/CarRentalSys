@@ -49,7 +49,7 @@ namespace CarRentalSys.Infrastructure
                     newCar.Category,
                     newCar.PricePerDay
                 );
-
+                
                 saved.AllCars.Add(car);
                 saved.NextID++;
             }

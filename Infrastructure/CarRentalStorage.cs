@@ -13,8 +13,8 @@ namespace CarRentalSys.Infrastructure
     {
         public int NextID { get; set; } = 1;
 
-        public List<Car> AllCars  = new List<Car>();
-        public List<Rentals> Rentals = new List<Rentals>();
-        public List<Customer> Customers = new List<Customer>();
+        public List<Car> AllCars { get; set; } = new List<Car>();
+        public List<Rentals> Rentals { get; set; } = new List<Rentals>();
+        public List<Customer> Customers { get; set; }    = new List<Customer>();
     }
 }

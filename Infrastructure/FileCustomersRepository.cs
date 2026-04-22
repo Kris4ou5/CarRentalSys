@@ -44,7 +44,7 @@ namespace CarRentalSys.Infrastructure
             if (newCustomer.Id == 0)
             {
                 var customer = new Customer(
-                    saved.NextID,
+                    saved.NextID++,
                     newCustomer.FullName,
                     newCustomer.DriverLicenseNumber,
                     newCustomer.Phone,
@@ -52,7 +52,7 @@ namespace CarRentalSys.Infrastructure
                 );
 
                 saved.Customers.Add(customer);
-                saved.NextID++;
+                
             }
             else
             {
