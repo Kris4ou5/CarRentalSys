@@ -12,10 +12,13 @@ namespace CarRentalSys.Application.Services
     public class CarService
     {
         private readonly ICarRepository _carRepo;
+        private readonly IRentalRepository _rentalRepo;
 
-        public CarService(ICarRepository carRepo)
+        public CarService(ICarRepository carRepo, IRentalRepository rentalRepo)
         {
             _carRepo = carRepo;
+            _rentalRepo = rentalRepo;
+
         }
 
         public Car AddCar(string brand, string model, CarCategory category, decimal pricePerDay)
@@ -59,6 +62,35 @@ namespace CarRentalSys.Application.Services
             return cars
                 .Where(c => c.Status == CarStatus.Available)
                 .ToList();
+        }
+
+        public List<Car> GetAvailableCarsForPeriod(DateTime start, DateTime end)
+        {
+            var cars = GetAvailableCars();
+            var rentals = _rentalRepo.GetAll();
+            List<Car> result = new List<Car>();
+            bool carOverLap = false;
+            foreach (var car in cars)
+            {
+                carOverLap = false;
+                foreach (var rental in rentals)
+                {
+                    
+                    if (car.Id  == rental.CarId)
+                    {
+                        if(rental.StartDate <= end && rental.EndDate >= start)
+                        {
+                            carOverLap = true;
+                        }
+                    }
+
+                    if (!carOverLap)
+                    {
+                        result.Add(car);
+                    }
+                }
+            }
+            return result;
         }
 
         public bool IsCarAvailable(int carId)
