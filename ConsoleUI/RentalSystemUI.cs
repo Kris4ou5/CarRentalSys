@@ -20,6 +20,17 @@ namespace CarRentalSys.ConsoleUI
             _rentalService = rentalService;
         }
 
-       
+        public void Start()
+        {
+            bool running = true;
+
+            while (running)
+            {
+                Console.Clear();
+
+                Console.WriteLine("===== CAR RENTAL SYSTEM =====");
+                Console.WriteLine("1.Add Car");
+            }
+        }
     }
 }
