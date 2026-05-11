@@ -191,12 +191,29 @@ namespace CarRentalSys.ConsoleUI
             }
 
             Pause();
-
         }
 
         private void ShowCustomerHistory()
         {
+            Console.Clear();
 
+            Console.WriteLine("=== CUSTOMER HISTORY ===");
+
+            Console.Write("Customer ID: ");
+
+            int id = int.Parse(Console.ReadLine());
+
+            var rentals = _customerService.GetCustomerRentalHistory(id);
+
+            foreach (var rental in rentals)
+            {
+                Console.WriteLine(
+                    $"Rental ID: {rental.Id} | " +
+                    $"Car ID: {rental.CarId} | " +
+                    $"{rental.StartDate:d} -> {rental.EndDate}");
+            }
+
+            Pause();
         }
 
         private void Pause()
