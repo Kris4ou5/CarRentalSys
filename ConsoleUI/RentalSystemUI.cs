@@ -91,7 +91,34 @@ namespace CarRentalSys.ConsoleUI
 
         private void AddCar()
         {
+            Console.Clear();
 
+            Console.WriteLine("=== ADD CAR ===");
+
+            Console.Write("Brand: ");
+            string brand = Console.ReadLine();
+
+            Console.Write("Model: ");
+            string model = Console.ReadLine();
+
+            Console.WriteLine("Category: ");
+            foreach (CarCategory carCategory in Enum.GetValues(typeof(CarCategory)))
+            {
+                Console.WriteLine($"{(int)carCategory} - {carCategory}");
+            }
+
+            int categoryInput = int.Parse(Console.ReadLine());
+
+            CarCategory category = (CarCategory)categoryInput;
+
+            Console.Write("Price per day: ");
+            decimal price = decimal.Parse(Console.ReadLine());
+
+            _carService.AddCar(brand, model, category, price);
+
+            Console.WriteLine("Car added successfully");
+
+            Pause();
         }
 
         private void ShowAllCars()
