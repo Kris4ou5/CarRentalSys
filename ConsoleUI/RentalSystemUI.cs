@@ -169,7 +169,29 @@ namespace CarRentalSys.ConsoleUI
 
         private void ShowAvailableCars() 
         {
-        
+            Console.Clear();
+
+            Console.WriteLine("=== AVAILABLE CARS ===");
+
+            Console.Write("Start date (yyyy-mm-dd): ");
+            DateTime start = DateTime.Parse(Console.ReadLine());
+
+            Console.Write("End date (yyyy-mm-dd): ");
+            DateTime end = DateTime.Parse(Console.ReadLine());
+
+            var cars = _carService.GetAvailableCarsForPeriod(start, end);
+
+            foreach (var car in cars)
+            {
+                Console.WriteLine(
+                    $"ID: {car.Id} | " +
+                    $"{car.Brand} {car.Model} | " +
+                    $"{car.Category} | " +
+                    $"{car.PricePerDay} lv/day");
+            }
+
+            Pause();
+
         }
 
         private void ShowCustomerHistory()
