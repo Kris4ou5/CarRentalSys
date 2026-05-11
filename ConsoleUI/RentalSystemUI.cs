@@ -144,7 +144,27 @@ namespace CarRentalSys.ConsoleUI
 
         private void RegisterCustomer()
         {
+            Console.Clear();
 
+            Console.WriteLine("=== REGISTER CUSTOMER ===");
+
+            Console.Write("Full name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Driver license: ");
+            string license = Console.ReadLine();
+
+            Console.Write("Phone: ");
+            string phone = Console.ReadLine();
+
+            Console.Write("Email: ");
+            string email = Console.ReadLine();
+
+            _customerService.RegisterCustomer(name, license, phone, email);
+
+            Console.WriteLine("Customer registered!");
+
+            Pause();
         }
 
         private void ShowAvailableCars() 
