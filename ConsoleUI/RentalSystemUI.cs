@@ -123,7 +123,23 @@ namespace CarRentalSys.ConsoleUI
 
         private void ShowAllCars()
         {
+            Console.Clear();
 
+            Console.WriteLine("=== ALL CARS ===");
+
+            var cars = _carService.GetAllCars();
+
+            foreach (var car in cars)
+            {
+                Console.WriteLine(
+                    $"ID: {car.Id} | " +
+                    $"{car.Brand} {car.Model} | " +
+                    $"{car.Category} | " +
+                    $"{car.PricePerDay} lv/day | " +
+                    $"Status: {car.Status}");
+            }
+
+            Pause();
         }
 
         private void RegisterCustomer()
