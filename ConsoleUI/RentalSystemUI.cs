@@ -102,7 +102,7 @@ namespace CarRentalSys.ConsoleUI
             string model = Console.ReadLine();
 
             Console.WriteLine("Category: ");
-            foreach (CarCategory carCategory in Enum.GetValues(typeof(CarCategory)))
+            foreach (var carCategory in Enum.GetValues(typeof(CarCategory)))
             {
                 Console.WriteLine($"{(int)carCategory} - {carCategory}");
             }
@@ -116,7 +116,7 @@ namespace CarRentalSys.ConsoleUI
 
             _carService.AddCar(brand, model, category, price);
 
-            Console.WriteLine("Car added successfully");
+            Console.WriteLine("Car added successfully!");
 
             Pause();
         }
@@ -220,7 +220,7 @@ namespace CarRentalSys.ConsoleUI
         {
             Console.WriteLine();
             Console.WriteLine("Press any key...");
-            Console.WriteLine();
+            Console.ReadKey();
         }
     }
 }
