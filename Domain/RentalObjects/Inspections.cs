@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CarRentalSys.Domain.Entities;
 using CarRentalSys.Domain.Enums;
 
 namespace CarRentalSys.Domain.RentalObjects
@@ -11,8 +12,13 @@ namespace CarRentalSys.Domain.RentalObjects
     {
         public int Id { get; private set; }
         public int RentalID { get; private set; }
-        public List<Damage> Damages { get; private set; } = new List<Damage>();
+        
         public decimal TotalCost { get; private set; }
+
+        public Rentals Rentals { get; private set; }
+        public List<Damage> Damages { get; private set; } = new List<Damage>();
+
+        public Inspections() { }
 
         public Inspections(int id, int rentalid, List<Damage> damages) 
         {  

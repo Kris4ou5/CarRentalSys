@@ -16,6 +16,10 @@ namespace CarRentalSys.Domain.Entities
         public decimal PricePerDay { get; private set; }
         public CarStatus Status { get; private set; }
 
+        public ICollection<Rentals> Rentals { get; private set; } = new List<Rentals>();
+
+        public Car() { }
+
         public Car(int id, string brand, string model, CarCategory category, decimal pricePerDay) 
         {
             Id = id;

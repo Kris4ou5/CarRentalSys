@@ -24,8 +24,12 @@ namespace CarRentalSys.Domain.Entities
         public decimal TotalPrice { get; private set; }
         public decimal Deposit { get; private set; }
 
+        public Customer Customer { get; private set; }
+        public Car Car { get; private set; }
         public Inspections? Inspection { get; private set; }
         public Payments? Payment { get; private set; }
+
+        public Rentals() { }
 
         public Rentals(int id,int carId,int customerId, DateTime startDate, DateTime endDate)
         {

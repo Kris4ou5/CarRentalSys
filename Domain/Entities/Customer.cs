@@ -14,7 +14,9 @@ namespace CarRentalSys.Domain.Entities
         public string Phone { get; private set; }
         public string Email { get; private set; } = string.Empty;
 
-        public List<Rentals> Rentals { get; private set; } = new List<Rentals>();
+        public  ICollection<Rentals> Rentals { get; private set; } = new List<Rentals>();
+
+        public Customer() { }
 
         public Customer(int id, string fullName, string driverLicenseNumber, string phone, string email) 
         {

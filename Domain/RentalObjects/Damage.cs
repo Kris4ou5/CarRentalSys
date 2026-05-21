@@ -9,11 +9,16 @@ namespace CarRentalSys.Domain.RentalObjects
 {
     public class Damage
     {
-        private Random rnd = new Random();
+        private static readonly Random rnd = new Random();
+
+        public int Id { get; set; }
+        public int InspectionId { get; private set; }
         public string Description { get; set; }
         public DamageSeverity DmgSeverity { get; set; }
         public decimal damageCost { get; private set; }
 
+        public Inspections Inspection { get; private set; }
+        public Damage() { }
         public Damage(string description, DamageSeverity dmgSeverity) 
         { 
            Description = description;

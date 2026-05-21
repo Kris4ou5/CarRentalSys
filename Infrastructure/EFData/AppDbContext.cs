@@ -20,11 +20,15 @@ namespace CarRentalSys.Infrastructure.EFData
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
            if(!optionsBuilder.IsConfigured)
-            {
+           {
                 optionsBuilder.UseSqlServer("Server=DESKTOP-BLQDC9N;Database=WalletDb;Trusted_Connection=True;TrustServerCertificate=True;");
-            }
+           }
         }
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+        }
+        
     }
 }
