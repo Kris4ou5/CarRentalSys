@@ -20,7 +20,7 @@ namespace CarRentalSys.Application.Services
 
         public void RegisterCustomer(string name, string driveLcs, string phone, string email)
         {
-            var newCustomer = new Customer(0, name, driveLcs, phone, email);
+            var newCustomer = new Customer(name, driveLcs, phone, email);
             ValidateCustomer(newCustomer);
             _customerRepository.Save(newCustomer);
         }

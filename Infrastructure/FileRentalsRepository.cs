@@ -46,7 +46,7 @@ namespace CarRentalSys.Infrastructure
 
             if(newRental.Id == 0)
             {
-                var correctedRental = new Rentals(saved.NextID, newRental.CarId, newRental.CustomerId, newRental.StartDate, newRental.EndDate);
+                var correctedRental = new Rentals( newRental.CarId, newRental.CustomerId, newRental.StartDate, newRental.EndDate);
 
             }
             else

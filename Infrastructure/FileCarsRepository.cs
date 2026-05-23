@@ -43,7 +43,7 @@ namespace CarRentalSys.Infrastructure
             if (newCar.Id == 0)
             {
                 var car = new Car(
-                    saved.NextID,
+                    
                     newCar.Brand,
                     newCar.Model,
                     newCar.Category,
