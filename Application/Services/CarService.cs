@@ -29,7 +29,7 @@ namespace CarRentalSys.Application.Services
             if (pricePerDay <= 0)
                 throw new ArgumentException("Price must be positive");
 
-            var car = new Car(0, brand, model, category, pricePerDay);
+            var car = new Car( brand, model, category, pricePerDay);
             
             _carRepo.Save(car);
 

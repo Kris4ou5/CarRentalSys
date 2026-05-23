@@ -19,9 +19,9 @@ namespace CarRentalSys.Domain.RentalObjects
 
         public Payments() { }
 
-         public Payments(int id, int rentalId, CarCategory category, int amount)
+         public Payments(int rentalId, CarCategory category, int amount)
          {
-            Id = id;
+            
             RentalId = rentalId;
             CarCategory = category;
             Amount = amount;

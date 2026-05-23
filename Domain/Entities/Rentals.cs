@@ -31,13 +31,10 @@ namespace CarRentalSys.Domain.Entities
 
         public Rentals() { }
 
-        public Rentals(int id,int carId,int customerId, DateTime startDate, DateTime endDate)
+        public Rentals(int carId,int customerId, DateTime startDate, DateTime endDate)
         {
             if (endDate < startDate)
                 throw new ArgumentException("End date cannot be before start date");
-            if(id <= 0 || customerId <=0 || carId<=0)
-                throw new ArgumentException("ID cannot be negative");
-            Id = id; 
             CustomerId = customerId;
             CarId = carId;
 

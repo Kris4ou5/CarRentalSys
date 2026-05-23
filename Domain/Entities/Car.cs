@@ -1,9 +1,11 @@
-﻿using CarRentalSys.Domain.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using CarRentalSys.Domain.Enums;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CarRentalSys.Domain.Entities
 {
@@ -20,9 +22,11 @@ namespace CarRentalSys.Domain.Entities
 
         public Car() { }
 
-        public Car(int id, string brand, string model, CarCategory category, decimal pricePerDay) 
+        public Car( string brand, string model, CarCategory category, decimal pricePerDay) 
         {
-            Id = id;
+            if (brand.IsNullOrEmpty()) throw new ArgumentNullException("You must set brand");
+            if (model.IsNullOrEmpty()) throw new ArgumentNullException("You must set drivers license");
+            if (pricePerDay <0) throw new ArgumentNullException("Price per day must be positive");
             Brand = brand;
             Model = model;
             Category = category;
