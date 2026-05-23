@@ -23,7 +23,7 @@ namespace CarRentalSys.Infrastructure.EFData
         {
            if(!optionsBuilder.IsConfigured)
            {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-BLQDC9N;Database=WalletDb;Trusted_Connection=True;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-BLQDC9N;Database=CarRentals;Trusted_Connection=True;TrustServerCertificate=True;");
             }
         }
 

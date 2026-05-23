@@ -19,11 +19,11 @@ namespace CarRentalSys.Domain.Entities
 
         public Customer() { }
 
-        public Customer( string fullName, string driverLicenseNumber, string phone, string email) 
+        public Customer(string fullName, string driverLicenseNumber, string phone, string email) 
         {
             if (fullName.IsNullOrEmpty()) throw new ArgumentNullException("You must set name");
             if (driverLicenseNumber.IsNullOrEmpty()) throw new ArgumentNullException("You must set drivers license");
-            if (Phone.IsNullOrEmpty()) throw new ArgumentNullException("You must set a phone");
+            if (phone.IsNullOrEmpty()) throw new ArgumentNullException("You must set a phone");
 
             FullName = fullName;
             DriverLicenseNumber = driverLicenseNumber;

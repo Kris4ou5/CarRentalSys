@@ -2,6 +2,8 @@
 using CarRentalSys.Application.Services;
 using CarRentalSys.ConsoleUI;
 using CarRentalSys.Infrastructure;
+using CarRentalSys.Infrastructure.EFData;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalSys
 {
@@ -9,13 +11,17 @@ namespace CarRentalSys
     {
         static void Main(string[] args)
         {
-            FileStorage storage = new FileStorage("rentals.json");
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+       .UseSqlServer("Server=DESKTOP-BLQDC9N;Database=CarRentals;Trusted_Connection=True;TrustServerCertificate=True;")
+       .Options;
 
-            ICarRepository carRepo = new FileCarsRepository(storage);
+            using var context = new AppDbContext(options);
 
-            ICustomerRepository customerRepo = new FileCustomersRepository(storage);
+            ICarRepository carRepo = new EFCarsRepository(context);
 
-            IRentalRepository rentalRepo = new FileRentalsRepository(storage);
+            ICustomerRepository customerRepo = new EFCustomersRepository(context);
+
+            IRentalRepository rentalRepo = new EFRentalsRepository(context);
 
             CarService carService = new CarService(carRepo, rentalRepo);
 
