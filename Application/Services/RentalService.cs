@@ -206,5 +206,18 @@ namespace CarRentalSys.Application.Services
             return revenue;
         }
 
+        public double FleetUsageReport()
+        {
+            var cars = _carRepo.GetAll();
+
+            if (cars.Count == 0)
+                return 0;
+
+            int rentedCars = cars.Count(c =>
+                c.Status == CarStatus.Rented);
+
+            return (double)rentedCars / cars.Count * 100;
+        }
+
     }
 }
