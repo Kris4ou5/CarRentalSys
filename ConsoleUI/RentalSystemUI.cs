@@ -49,6 +49,8 @@ namespace CarRentalSys.ConsoleUI
                 Console.WriteLine("14. Process Payment");
                 Console.WriteLine("15. Update Customer Contact");
                 Console.WriteLine("16. Return Deposit");
+                Console.WriteLine("17. Send Car To Maintenance");
+                Console.WriteLine("18. Return Car From Maintenance");
                 Console.WriteLine("0. Exit");
 
                 Console.WriteLine("Choose option");
@@ -120,6 +122,14 @@ namespace CarRentalSys.ConsoleUI
 
                         case "16":
                             ReturnDeposit();
+                            break;
+
+                        case "17":
+                            SendCarToMaintenance();
+                            break;
+
+                        case "18":
+                            ReturnCarFromMaintenance();
                             break;
 
                         case "0":
@@ -526,6 +536,42 @@ namespace CarRentalSys.ConsoleUI
 
             Console.WriteLine(
                 $"Returned deposit: {amount} lv");
+
+            Pause();
+        }
+
+        private void SendCarToMaintenance()
+        {
+            Console.Clear();
+
+            Console.Write("Car ID: ");
+
+            int carId =
+                int.Parse(Console.ReadLine());
+
+            _rentalService
+                .SendCarToMaintenance(carId);
+
+            Console.WriteLine(
+                "Car sent to maintenance!");
+
+            Pause();
+        }
+
+        private void ReturnCarFromMaintenance()
+        {
+            Console.Clear();
+
+            Console.Write("Car ID: ");
+
+            int carId =
+                int.Parse(Console.ReadLine());
+
+            _rentalService
+                .ReturnCarFromMaintenance(carId);
+
+            Console.WriteLine(
+                "Car returned from maintenance!");
 
             Pause();
         }
