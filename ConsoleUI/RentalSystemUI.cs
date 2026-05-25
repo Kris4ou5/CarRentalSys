@@ -451,7 +451,22 @@ namespace CarRentalSys.ConsoleUI
 
         private void ProcessPayment()
         {
+            Console.Clear();
 
+            Console.WriteLine("=== PROCESS PAYMENT ===");
+
+            Console.Write("Rental ID: ");
+
+            int rentalId =
+                int.Parse(Console.ReadLine());
+
+            var payment =
+                _rentalService.ProcessPayment(rentalId);
+
+            Console.WriteLine(
+                $"Payment processed: {payment.Amount} lv");
+
+            Pause();
         }
 
         private void Pause()
