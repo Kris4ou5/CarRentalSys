@@ -72,6 +72,11 @@ namespace CarRentalSys.Domain.Entities
         {
             Payment = payment;
         }
-     
+
+        public void ChangeStatus(RentalStatus newStatus)
+        {
+            Status = newStatus;
+        }
+
     }
 }

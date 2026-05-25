@@ -78,5 +78,20 @@ namespace CarRentalSys.Application.Services
 
             return newRental;
         }
+
+        public void CancelRental(int rentalId)
+        {
+            var rental = _rentalRepo.GetById(rentalId);
+
+            if (rental == null)
+                throw new Exception("Rental not found");
+
+            if (DateTime.Now >= rental.StartDate)
+                throw new Exception("Rental already started");
+
+            rental.ChangeStatus(RentalStatus.Canncelled);
+
+            _rentalRepo.Save(rental);
+        }
     }
 }
