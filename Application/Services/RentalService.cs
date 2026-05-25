@@ -26,7 +26,7 @@ namespace CarRentalSys.Application.Services
         public decimal Price(Car car, int days, int promo)
         {
             decimal discount = promo / 100m;
-            decimal categoryMulti = (decimal)car.Category/10 + 1;
+            decimal categoryMulti = (decimal)car.Category / 10 + 1;
             decimal price = car.PricePerDay * days * categoryMulti;
             price -= price * discount;
             return price;
@@ -180,6 +180,21 @@ namespace CarRentalSys.Application.Services
             return payment;
         }
 
+        public decimal ReturnDeposit(int rentalId)
+        {
+            var rental = _rentalRepo.GetById(rentalId);
+
+            if (rental == null)
+                throw new Exception("Rental not found");
+
+            bool hasDamages = rental.Inspection != null && rental.Inspection.TotalCost > 0;
+
+            if (hasDamages)
+                return 0;
+
+            return rental.Deposit;
+        }
+
         public IReadOnlyList<Rentals> GetActiveRentals()
         {
             var rentals = _rentalRepo.GetAll();
@@ -216,8 +231,9 @@ namespace CarRentalSys.Application.Services
 
             int rentedCars = cars.Count(c => c.Status == CarStatus.Rented);
 
-            return (double) rentedCars / cars.Count * 100;
+            return (double)rentedCars / cars.Count * 100;
         }
+
 
     }
 }
