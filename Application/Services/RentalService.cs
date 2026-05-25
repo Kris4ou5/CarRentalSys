@@ -93,5 +93,23 @@ namespace CarRentalSys.Application.Services
 
             _rentalRepo.Save(rental);
         }
+
+        public void StartRental(int rentalId)
+        {
+            var rental = _rentalRepo.GetById(rentalId);
+
+            if (rental == null)
+                throw new Exception("Rental not found");
+
+            var car = _carRepo.GetById(rental.CarId);
+
+            rental.ChangeStatus(RentalStatus.Active);
+
+            car.ChangeStatus(CarStatus.Rented);
+
+            _rentalRepo.Save(rental);
+
+            _carRepo.Save(car);
+        }
     }
 }
