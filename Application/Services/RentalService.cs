@@ -158,6 +158,28 @@ namespace CarRentalSys.Application.Services
             return inspection;
         }
 
+        public Payments ProcessPayment(int rentalId)
+        {
+            var rental = _rentalRepo.GetById(rentalId);
+
+            if (rental == null)
+                throw new Exception("Rental not found");
+
+            var car = _carRepo.GetById(rental.CarId);
+
+            Payments payment = new Payments(
+                rentalId,
+                car.Category,
+                (int)rental.TotalPrice);
+
+            rental.AddPayment(payment);
+
+            _rentalRepo.Save(rental);
+
+            return payment;
+        }
+
+
 
 
     }
