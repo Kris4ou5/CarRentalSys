@@ -47,6 +47,7 @@ namespace CarRentalSys.ConsoleUI
                 Console.WriteLine("12. Revenue Report");
                 Console.WriteLine("13. Register Inspection");
                 Console.WriteLine("14. Process Payment");
+                Console.WriteLine("15. Update Customer Contact");
                 Console.WriteLine("0. Exit");
 
                 Console.WriteLine("Choose option");
@@ -110,6 +111,10 @@ namespace CarRentalSys.ConsoleUI
 
                         case "14":
                             ProcessPayment();
+                            break;
+
+                        case "15":
+                            UpdateCustomerContact();
                             break;
 
 
@@ -465,6 +470,31 @@ namespace CarRentalSys.ConsoleUI
 
             Console.WriteLine(
                 $"Payment processed: {payment.Amount} lv");
+
+            Pause();
+        }
+
+        private void UpdateCustomerContact()
+        {
+            Console.Clear();
+
+            Console.WriteLine("=== UPDATE CUSTOMER ===");
+
+            Console.Write("Customer ID: ");
+            int id = int.Parse(Console.ReadLine());
+
+            Console.Write("New phone: ");
+            string phone = Console.ReadLine();
+
+            Console.Write("New email: ");
+            string email = Console.ReadLine();
+
+            _customerService.UpdateCustomerContact(
+                id,
+                phone,
+                email);
+
+            Console.WriteLine("Customer updated!");
 
             Pause();
         }
