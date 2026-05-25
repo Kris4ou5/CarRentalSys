@@ -54,5 +54,19 @@ namespace CarRentalSys.Application.Services
             if (string.IsNullOrEmpty(customer.DriverLicenseNumber) || customer.DriverLicenseNumber.Length < 9 || customer.DriverLicenseNumber.Length > 9) throw new ArgumentException("Невалиден номер на книжка.");
             if (string.IsNullOrEmpty(customer.Phone)) throw new ArgumentException("Невалиден телефонен номер.");
         }
+
+        public void UpdateCustomerContact(int customerId, string phone, string email)
+        {
+            var customer = _customerRepository.GetById(customerId);
+
+            if (customer == null)
+                throw new Exception("Customer not found");
+
+            customer.UpdateContactInfo(phone, email);
+
+            ValidateCustomer(customer);
+
+            _customerRepository.Save(customer);
+        }
     }
 }
