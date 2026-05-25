@@ -48,6 +48,7 @@ namespace CarRentalSys.ConsoleUI
                 Console.WriteLine("13. Register Inspection");
                 Console.WriteLine("14. Process Payment");
                 Console.WriteLine("15. Update Customer Contact");
+                Console.WriteLine("16. Return Deposit");
                 Console.WriteLine("0. Exit");
 
                 Console.WriteLine("Choose option");
@@ -117,6 +118,9 @@ namespace CarRentalSys.ConsoleUI
                             UpdateCustomerContact();
                             break;
 
+                        case "16":
+                            ReturnDeposit();
+                            break;
 
                         case "0":
                             running = false;
@@ -136,7 +140,7 @@ namespace CarRentalSys.ConsoleUI
                     Pause();
                 }
 
-                
+
             }
         }
 
@@ -218,7 +222,7 @@ namespace CarRentalSys.ConsoleUI
             Pause();
         }
 
-        private void ShowAvailableCars() 
+        private void ShowAvailableCars()
         {
             Console.Clear();
 
@@ -504,6 +508,26 @@ namespace CarRentalSys.ConsoleUI
             Console.WriteLine();
             Console.WriteLine("Press any key...");
             Console.ReadKey();
+        }
+
+        private void ReturnDeposit()
+        {
+            Console.Clear();
+
+            Console.WriteLine("=== RETURN DEPOSIT ===");
+
+            Console.Write("Rental ID: ");
+
+            int rentalId =
+                int.Parse(Console.ReadLine());
+
+            decimal amount =
+                _rentalService.ReturnDeposit(rentalId);
+
+            Console.WriteLine(
+                $"Returned deposit: {amount} lv");
+
+            Pause();
         }
     }
 }
