@@ -328,6 +328,17 @@ namespace CarRentalSys.ConsoleUI
 
         private void CancelRental()
         {
+            Console.Clear();
+
+            Console.Write("Rental ID: ");
+
+            int id = int.Parse(Console.ReadLine());
+
+            _rentalService.CancelRental(id);
+
+            Console.WriteLine("Rental cancelled!");
+
+            Pause();
 
         }
 
