@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarRentalSys.Application.Interfaces;
 using CarRentalSys.Domain.Entities;
+using CarRentalSys.Domain.Enums;
 
 namespace CarRentalSys.Application.Services
 {
@@ -30,7 +31,52 @@ namespace CarRentalSys.Application.Services
             return price;
         }
 
+        public Rentals CreateRental(int customerId, int carId, DateTime startDate, DateTime endDate, int promo)
+        {
+            var customer = _customerRepo.GetById(customerId);
 
+            if (customer == null)
+                throw new Exception("Customer not found");
 
+            var car = _carRepo.GetById(carId);
+
+            if (car == null)
+                throw new Exception("Car not found");
+
+            if (car.Status != CarStatus.Available)
+                throw new Exception("Car is not available");
+
+            var rentals = _rentalRepo.GetAll();
+
+            foreach (var rental in rentals)
+            {
+                if (rental.CarId == carId)
+                {
+                    bool overlap =
+                        rental.StartDate <= endDate &&
+                        rental.EndDate >= startDate;
+
+                    if (overlap)
+                        throw new Exception("Car already rented for this period");
+                }
+
+            }
+
+            Rentals newRental = new Rentals(carId, customerId, startDate, endDate);
+
+            int days = newRental.GetTotalDays();
+
+            decimal totalPrice = Price(car, days, promo);
+
+            newRental.SetPrice(totalPrice);
+
+            decimal deposit = totalPrice * 0.20m;
+
+            newRental.SetDeposit(deposit);
+
+            _rentalRepo.Save(newRental);
+
+            return newRental;
+        }
     }
 }
