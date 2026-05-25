@@ -88,6 +88,17 @@ namespace CarRentalSys.Application.Services
             if (DateTime.Now >= rental.StartDate)
                 throw new Exception("Rental already started");
 
+            int daysBeforeStart = (rental.StartDate - DateTime.Now).Days;
+
+            if (daysBeforeStart < 3)
+            {
+                decimal penalty =
+                    rental.TotalPrice * 0.10m;
+
+                rental.SetPrice(
+                    rental.TotalPrice + penalty);
+            }
+
             rental.ChangeStatus(RentalStatus.Canncelled);
 
             _rentalRepo.Save(rental);
