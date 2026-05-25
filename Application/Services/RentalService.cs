@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CarRentalSys.Application.Interfaces;
 using CarRentalSys.Domain.Entities;
 using CarRentalSys.Domain.Enums;
+using CarRentalSys.Domain.RentalObjects;
 
 namespace CarRentalSys.Application.Services
 {
@@ -129,5 +130,35 @@ namespace CarRentalSys.Application.Services
 
             _carRepo.Save(car);
         }
+
+        public Inspections RegisterInspection(int rentalId, List<Damage> damages)
+        {
+            var rental = _rentalRepo.GetById(rentalId);
+
+            if (rental == null)
+                throw new Exception("Rental not found");
+
+            Inspections inspection = new Inspections(
+                0,
+                rentalId,
+                damages);
+
+            inspection.CalculateDamagesCost();
+
+            rental.AddInspection(inspection);
+
+            decimal finalPrice =
+                rental.TotalPrice +
+                inspection.TotalCost;
+
+            rental.SetPrice(finalPrice);
+
+            _rentalRepo.Save(rental);
+
+            return inspection;
+        }
+
+
+
     }
 }
