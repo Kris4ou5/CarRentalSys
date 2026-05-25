@@ -263,7 +263,37 @@ namespace CarRentalSys.ConsoleUI
 
         public void CreateRental()
         {
+            Console.Clear();
 
+            Console.WriteLine("=== CREATE RENTAL ===");
+
+            Console.Write("Customer ID: ");
+            int customerId = int.Parse(Console.ReadLine());
+
+            Console.Write("Car ID: ");
+            int carId = int.Parse(Console.ReadLine());
+
+            Console.Write("Start date: ");
+            DateTime start = DateTime.Parse(Console.ReadLine());
+
+            Console.Write("End date: ");
+            DateTime end = DateTime.Parse(Console.ReadLine());
+
+            Console.Write("Promo (%): ");
+            int promo = int.Parse(Console.ReadLine());
+
+            var rental = _rentalService.CreateRental(
+                customerId,
+                carId,
+                start,
+                end,
+                promo);
+
+            Console.WriteLine("Rental created!");
+            Console.WriteLine($"Total: {rental.TotalPrice}");
+            Console.WriteLine($"Deposit: {rental.Deposit}");
+
+            Pause();
         }
 
         private void StartRental()
