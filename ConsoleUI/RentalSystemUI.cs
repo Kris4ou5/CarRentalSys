@@ -377,7 +377,26 @@ namespace CarRentalSys.ConsoleUI
 
         private void RevenueReport()
         {
+            Console.Clear();
 
+            Console.WriteLine("=== REVENUE REPORT ===");
+
+            Console.Write("Start date: ");
+
+            DateTime start =
+                DateTime.Parse(Console.ReadLine());
+
+            Console.Write("End date: ");
+
+            DateTime end =
+                DateTime.Parse(Console.ReadLine());
+
+            decimal revenue =
+                _rentalService.GetRevenueForPeriod(start, end);
+
+            Console.WriteLine($"Revenue: {revenue} lv");
+
+            Pause();
         }
 
         private void RegisterInspection()
