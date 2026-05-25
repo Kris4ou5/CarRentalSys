@@ -1,6 +1,7 @@
 ﻿using CarRentalSys.Application.Services;
 using CarRentalSys.Domain.Entities;
 using CarRentalSys.Domain.Enums;
+using CarRentalSys.Domain.RentalObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -401,7 +402,51 @@ namespace CarRentalSys.ConsoleUI
 
         private void RegisterInspection()
         {
+            Console.Clear();
 
+            Console.WriteLine("=== REGISTER INSPECTION ===");
+
+            Console.Write("Rental ID: ");
+
+            int rentalId =
+                int.Parse(Console.ReadLine());
+
+            List<Damage> damages =
+                new List<Damage>();
+
+            Console.Write("Damage count: ");
+
+            int count =
+                int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < count; i++)
+            {
+                Console.Write("Description: ");
+
+                string desc =
+                    Console.ReadLine();
+
+                Console.WriteLine("Severity:");
+                Console.WriteLine("0 - Minor");
+                Console.WriteLine("1 - Moderate");
+                Console.WriteLine("2 - Severe");
+
+                DamageSeverity severity =
+                    (DamageSeverity)int.Parse(Console.ReadLine());
+
+                damages.Add(
+                    new Damage(desc, severity));
+            }
+
+            var inspection =
+                _rentalService.RegisterInspection(
+                    rentalId,
+                    damages);
+
+            Console.WriteLine(
+                $"Damage cost: {inspection.TotalCost}");
+
+            Pause();
         }
 
         private void ProcessPayment()
