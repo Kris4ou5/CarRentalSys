@@ -188,6 +188,23 @@ namespace CarRentalSys.Application.Services
                 .ToList();
         }
 
+        public decimal GetRevenueForPeriod(DateTime start, DateTime end)
+        {
+            var rentals = _rentalRepo.GetAll();
+
+            decimal revenue = 0;
+
+            foreach (var rental in rentals)
+            {
+                if (rental.StartDate >= start &&
+                    rental.EndDate <= end)
+                {
+                    revenue += rental.TotalPrice;
+                }
+            }
+
+            return revenue;
+        }
 
     }
 }
