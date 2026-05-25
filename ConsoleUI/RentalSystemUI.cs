@@ -313,7 +313,17 @@ namespace CarRentalSys.ConsoleUI
 
         private void CompleteRental()
         {
+            Console.Clear();
 
+            Console.Write("Rental ID: ");
+
+            int id = int.Parse(Console.ReadLine());
+
+            _rentalService.CompleteRental(id);
+
+            Console.WriteLine("Rental completed!");
+
+            Pause();
         }
 
         private void CancelRental()
