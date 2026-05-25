@@ -298,7 +298,17 @@ namespace CarRentalSys.ConsoleUI
 
         private void StartRental()
         {
+            Console.Clear();
 
+            Console.Write("Rental ID: ");
+
+            int id = int.Parse(Console.ReadLine());
+
+            _rentalService.StartRental(id);
+
+            Console.WriteLine("Rental started!");
+
+            Pause();
         }
 
         private void CompleteRental()
