@@ -344,7 +344,22 @@ namespace CarRentalSys.ConsoleUI
 
         private void ShowActiveRentals()
         {
+            Console.Clear();
 
+            Console.WriteLine("=== ACTIVE RENTALS ===");
+
+            var rentals = _rentalService.GetActiveRentals();
+
+            foreach (var rental in rentals)
+            {
+                Console.WriteLine(
+                    $"Rental ID: {rental.Id} | " +
+                    $"Customer: {rental.CustomerId} | " +
+                    $"Car: {rental.CarId} | " +
+                    $"{rental.StartDate:d} -> {rental.EndDate:d}");
+            }
+
+            Pause();
         }
 
         private void FleetUsageReport()
