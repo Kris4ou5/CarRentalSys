@@ -364,7 +364,15 @@ namespace CarRentalSys.ConsoleUI
 
         private void FleetUsageReport()
         {
+            Console.Clear();
 
+            Console.WriteLine("=== FLEET REPORT ===");
+
+            double usage = _rentalService.FleetUsageReport();
+
+            Console.WriteLine($"Fleet usage: {usage:F2}%");
+
+            Pause();
         }
 
         private void RevenueReport()
