@@ -195,6 +195,32 @@ namespace CarRentalSys.Application.Services
             return rental.Deposit;
         }
 
+        public void SendCarToMaintenance(int carId)
+        {
+            var car = _carRepo.GetById(carId);
+
+            if (car == null)
+                throw new Exception("Car not found");
+
+            car.ChangeStatus(
+                CarStatus.InMaintenance);
+
+            _carRepo.Save(car);
+        }
+
+        public void ReturnCarFromMaintenance(int carId)
+        {
+            var car = _carRepo.GetById(carId);
+
+            if (car == null)
+                throw new Exception("Car not found");
+
+            car.ChangeStatus(
+                CarStatus.Available);
+
+            _carRepo.Save(car);
+        }
+
         public IReadOnlyList<Rentals> GetActiveRentals()
         {
             var rentals = _rentalRepo.GetAll();
