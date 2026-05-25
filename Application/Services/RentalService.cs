@@ -179,7 +179,14 @@ namespace CarRentalSys.Application.Services
             return payment;
         }
 
+        public IReadOnlyList<Rentals> GetActiveRentals()
+        {
+            var rentals = _rentalRepo.GetAll();
 
+            return rentals
+                .Where(r => r.Status == RentalStatus.Active)
+                .ToList();
+        }
 
 
     }
