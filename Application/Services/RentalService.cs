@@ -53,9 +53,7 @@ namespace CarRentalSys.Application.Services
             {
                 if (rental.CarId == carId)
                 {
-                    bool overlap =
-                        rental.StartDate <= endDate &&
-                        rental.EndDate >= startDate;
+                    bool overlap = rental.StartDate <= endDate && rental.EndDate >= startDate;
 
                     if (overlap)
                         throw new Exception("Car already rented for this period");
@@ -138,18 +136,13 @@ namespace CarRentalSys.Application.Services
             if (rental == null)
                 throw new Exception("Rental not found");
 
-            Inspections inspection = new Inspections(
-                0,
-                rentalId,
-                damages);
+            Inspections inspection = new Inspections(0, rentalId, damages);
 
             inspection.CalculateDamagesCost();
 
             rental.AddInspection(inspection);
 
-            decimal finalPrice =
-                rental.TotalPrice +
-                inspection.TotalCost;
+            decimal finalPrice = rental.TotalPrice + inspection.TotalCost;
 
             rental.SetPrice(finalPrice);
 
@@ -167,10 +160,7 @@ namespace CarRentalSys.Application.Services
 
             var car = _carRepo.GetById(rental.CarId);
 
-            Payments payment = new Payments(
-                rentalId,
-                car.Category,
-                (int)rental.TotalPrice);
+            Payments payment = new Payments(rentalId, car.Category, (int)rental.TotalPrice);
 
             rental.AddPayment(payment);
 
@@ -213,10 +203,9 @@ namespace CarRentalSys.Application.Services
             if (cars.Count == 0)
                 return 0;
 
-            int rentedCars = cars.Count(c =>
-                c.Status == CarStatus.Rented);
+            int rentedCars = cars.Count(c => c.Status == CarStatus.Rented);
 
-            return (double)rentedCars / cars.Count * 100;
+            return (double) rentedCars / cars.Count * 100;
         }
 
     }

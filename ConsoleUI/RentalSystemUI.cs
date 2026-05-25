@@ -37,6 +37,15 @@ namespace CarRentalSys.ConsoleUI
                 Console.WriteLine("3. Register Customer");
                 Console.WriteLine("4. Show Available Cars");
                 Console.WriteLine("5. Customer Rental History");
+                Console.WriteLine("6. Create Rental");
+                Console.WriteLine("7. Start Rental");
+                Console.WriteLine("8. Complete Rental");
+                Console.WriteLine("9. Cancel Rental");
+                Console.WriteLine("10. Active Rentals");
+                Console.WriteLine("11. Fleet Usage Report");
+                Console.WriteLine("12. Revenue Report");
+                Console.WriteLine("13. Register Inspection");
+                Console.WriteLine("14. Process Payment");
                 Console.WriteLine("0. Exit");
 
                 Console.WriteLine("Choose option");
@@ -66,6 +75,42 @@ namespace CarRentalSys.ConsoleUI
                         case "5":
                             ShowCustomerHistory();
                             break;
+                        case "6":
+                            CreateRental();
+                            break;
+
+                        case "7":
+                            StartRental();
+                            break;
+
+                        case "8":
+                            CompleteRental();
+                            break;
+
+                        case "9":
+                            CancelRental();
+                            break;
+
+                        case "10":
+                            ShowActiveRentals();
+                            break;
+
+                        case "11":
+                            FleetUsageReport();
+                            break;
+
+                        case "12":
+                            RevenueReport();
+                            break;
+
+                        case "13":
+                            RegisterInspection();
+                            break;
+
+                        case "14":
+                            ProcessPayment();
+                            break;
+
 
                         case "0":
                             running = false;
@@ -214,6 +259,51 @@ namespace CarRentalSys.ConsoleUI
             }
 
             Pause();
+        }
+
+        public void CreateRental()
+        {
+
+        }
+
+        private void StartRental()
+        {
+
+        }
+
+        private void CompleteRental()
+        {
+
+        }
+
+        private void CancelRental()
+        {
+
+        }
+
+        private void ShowActiveRentals()
+        {
+
+        }
+
+        private void FleetUsageReport()
+        {
+
+        }
+
+        private void RevenueReport()
+        {
+
+        }
+
+        private void RegisterInspection()
+        {
+
+        }
+
+        private void ProcessPayment()
+        {
+
         }
 
         private void Pause()
