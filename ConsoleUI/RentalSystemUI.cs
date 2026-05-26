@@ -513,13 +513,6 @@ namespace CarRentalSys.ConsoleUI
             Pause();
         }
 
-        private void Pause()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Press any key...");
-            Console.ReadKey();
-        }
-
         private void ReturnDeposit()
         {
             Console.Clear();
@@ -574,6 +567,13 @@ namespace CarRentalSys.ConsoleUI
                 "Car returned from maintenance!");
 
             Pause();
+        }
+
+        private void Pause()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Press any key...");
+            Console.ReadKey();
         }
     }
 }
