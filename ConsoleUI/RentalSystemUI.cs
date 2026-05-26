@@ -537,16 +537,15 @@ namespace CarRentalSys.ConsoleUI
         {
             Console.Clear();
 
+            Console.WriteLine("=== SEND CAR TO MAINTENANCE ===");
+
             Console.Write("Car ID: ");
 
-            int carId =
-                int.Parse(Console.ReadLine());
+            int carId = int.Parse(Console.ReadLine());
 
-            _rentalService
-                .SendCarToMaintenance(carId);
+            _carService.SendToMaintenance(carId);
 
-            Console.WriteLine(
-                "Car sent to maintenance!");
+            Console.WriteLine("Car sent to maintenance!");
 
             Pause();
         }
@@ -555,16 +554,15 @@ namespace CarRentalSys.ConsoleUI
         {
             Console.Clear();
 
+            Console.WriteLine("=== RETURN CAR FROM MAINTENANCE ===");
+
             Console.Write("Car ID: ");
 
-            int carId =
-                int.Parse(Console.ReadLine());
+            int carId = int.Parse(Console.ReadLine());
 
-            _rentalService
-                .ReturnCarFromMaintenance(carId);
+            _carService.ReturnFromMaintenance(carId);
 
-            Console.WriteLine(
-                "Car returned from maintenance!");
+            Console.WriteLine("Car returned from maintenance!");
 
             Pause();
         }

@@ -50,6 +50,11 @@ namespace CarRentalSys.Application.Services
             ChangeCarStatus(carId, CarStatus.InMaintenance);
         }
 
+        public void ReturnFromMaintenance(int carId)
+        {
+            ChangeCarStatus(carId, CarStatus.Available);
+        }
+
         public IReadOnlyList<Car> GetAllCars()
         {
             return _carRepo.GetAll();

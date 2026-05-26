@@ -195,32 +195,6 @@ namespace CarRentalSys.Application.Services
             return rental.Deposit;
         }
 
-        public void SendCarToMaintenance(int carId)
-        {
-            var car = _carRepo.GetById(carId);
-
-            if (car == null)
-                throw new Exception("Car not found");
-
-            car.ChangeStatus(
-                CarStatus.InMaintenance);
-
-            _carRepo.Save(car);
-        }
-
-        public void ReturnCarFromMaintenance(int carId)
-        {
-            var car = _carRepo.GetById(carId);
-
-            if (car == null)
-                throw new Exception("Car not found");
-
-            car.ChangeStatus(
-                CarStatus.Available);
-
-            _carRepo.Save(car);
-        }
-
         public IReadOnlyList<Rentals> GetActiveRentals()
         {
             var rentals = _rentalRepo.GetAll();
@@ -228,6 +202,18 @@ namespace CarRentalSys.Application.Services
             return rentals
                 .Where(r => r.Status == RentalStatus.Active)
                 .ToList();
+        }
+
+        public double FleetUsageReport()
+        {
+            var cars = _carRepo.GetAll();
+
+            if (cars.Count == 0)
+                return 0;
+
+            int rentedCars = cars.Count(c => c.Status == CarStatus.Rented);
+
+            return (double)rentedCars / cars.Count * 100;
         }
 
         public decimal GetRevenueForPeriod(DateTime start, DateTime end)
@@ -248,17 +234,6 @@ namespace CarRentalSys.Application.Services
             return revenue;
         }
 
-        public double FleetUsageReport()
-        {
-            var cars = _carRepo.GetAll();
-
-            if (cars.Count == 0)
-                return 0;
-
-            int rentedCars = cars.Count(c => c.Status == CarStatus.Rented);
-
-            return (double)rentedCars / cars.Count * 100;
-        }
 
 
     }
