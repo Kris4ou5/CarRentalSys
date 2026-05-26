@@ -33,24 +33,24 @@ namespace CarRentalSys.ConsoleUI
                 Console.Clear();
 
                 Console.WriteLine("===== CAR RENTAL SYSTEM =====");
-                Console.WriteLine("1.Add Car");
-                Console.WriteLine("2. Show All Cars");
-                Console.WriteLine("3. Register Customer");
-                Console.WriteLine("4. Show Available Cars");
-                Console.WriteLine("5. Customer Rental History");
+                Console.WriteLine("1. Register Customer");
+                Console.WriteLine("2. Update Customer Contact");
+                Console.WriteLine("3. AddCar");
+                Console.WriteLine("4. Show All Cars");
+                Console.WriteLine("5. Show Available Cars");
                 Console.WriteLine("6. Create Rental");
-                Console.WriteLine("7. Start Rental");
-                Console.WriteLine("8. Complete Rental");
-                Console.WriteLine("9. Cancel Rental");
-                Console.WriteLine("10. Active Rentals");
-                Console.WriteLine("11. Fleet Usage Report");
-                Console.WriteLine("12. Revenue Report");
-                Console.WriteLine("13. Register Inspection");
-                Console.WriteLine("14. Process Payment");
-                Console.WriteLine("15. Update Customer Contact");
-                Console.WriteLine("16. Return Deposit");
-                Console.WriteLine("17. Send Car To Maintenance");
-                Console.WriteLine("18. Return Car From Maintenance");
+                Console.WriteLine("7. Cancel Rental");
+                Console.WriteLine("8. Start Rental");
+                Console.WriteLine("9. Complete Rental");
+                Console.WriteLine("10. Register Inspection");
+                Console.WriteLine("11. Process Payment");
+                Console.WriteLine("12. Return Deposit");
+                Console.WriteLine("13. Send Car To Maintenance");
+                Console.WriteLine("14. Return Car From Maintenance");
+                Console.WriteLine("15. Show Active Rentals");
+                Console.WriteLine("16. Show Customer Rental History");
+                Console.WriteLine("17. Show Fleet Usage Report");
+                Console.WriteLine("18. Show Revenue Report");
                 Console.WriteLine("0. Exit");
 
                 Console.WriteLine("Choose option");
@@ -62,74 +62,75 @@ namespace CarRentalSys.ConsoleUI
                     switch (choice)
                     {
                         case "1":
-                            AddCar();
-                            break;
-
-                        case "2":
-                            ShowAllCars();
-                            break;
-
-                        case "3":
                             RegisterCustomer();
                             break;
 
+                        case "2":
+                            UpdateCustomerContact();
+                            break;
+
+                        case "3":
+                            AddCar();
+                            break;
+
                         case "4":
-                            ShowAvailableCars();
+                            ShowAllCars();
                             break;
 
                         case "5":
-                            ShowCustomerHistory();
+                            ShowAvailableCars();
                             break;
+
                         case "6":
                             CreateRental();
                             break;
 
                         case "7":
-                            StartRental();
-                            break;
-
-                        case "8":
-                            CompleteRental();
-                            break;
-
-                        case "9":
                             CancelRental();
                             break;
 
+                        case "8":
+                            StartRental();
+                            break;
+
+                        case "9":
+                            CompleteRental();
+                            break;
+
                         case "10":
-                            ShowActiveRentals();
-                            break;
-
-                        case "11":
-                            FleetUsageReport();
-                            break;
-
-                        case "12":
-                            RevenueReport();
-                            break;
-
-                        case "13":
                             RegisterInspection();
                             break;
 
-                        case "14":
+                        case "11":
                             ProcessPayment();
                             break;
 
-                        case "15":
-                            UpdateCustomerContact();
-                            break;
-
-                        case "16":
+                        case "12":
                             ReturnDeposit();
                             break;
 
-                        case "17":
+                        case "13":
                             SendCarToMaintenance();
                             break;
 
-                        case "18":
+                        case "14":
                             ReturnCarFromMaintenance();
+                            break;
+
+                        case "15":
+                            ShowActiveRentals();
+                            break;
+
+                        case "16":
+                            ShowCustomerHistory();
+                            break;
+
+                        case "17":
+                            FleetUsageReport();
+                            break;
+
+                        case "18":
+                            RevenueReport();
                             break;
 
                         case "0":
@@ -152,6 +153,56 @@ namespace CarRentalSys.ConsoleUI
 
 
             }
+        }
+
+        private void RegisterCustomer()
+        {
+            Console.Clear();
+
+            Console.WriteLine("=== REGISTER CUSTOMER ===");
+
+            Console.Write("Full name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Driver license: ");
+            string license = Console.ReadLine();
+
+            Console.Write("Phone: ");
+            string phone = Console.ReadLine();
+
+            Console.Write("Email: ");
+            string email = Console.ReadLine();
+
+            _customerService.RegisterCustomer(name, license, phone, email);
+
+            Console.WriteLine("Customer registered!");
+
+            Pause();
+        }
+
+        private void UpdateCustomerContact()
+        {
+            Console.Clear();
+
+            Console.WriteLine("=== UPDATE CUSTOMER ===");
+
+            Console.Write("Customer ID: ");
+            int id = int.Parse(Console.ReadLine());
+
+            Console.Write("New phone: ");
+            string phone = Console.ReadLine();
+
+            Console.Write("New email: ");
+            string email = Console.ReadLine();
+
+            _customerService.UpdateCustomerContact(
+                id,
+                phone,
+                email);
+
+            Console.WriteLine("Customer updated!");
+
+            Pause();
         }
 
         private void AddCar()
@@ -207,31 +258,6 @@ namespace CarRentalSys.ConsoleUI
             Pause();
         }
 
-        private void RegisterCustomer()
-        {
-            Console.Clear();
-
-            Console.WriteLine("=== REGISTER CUSTOMER ===");
-
-            Console.Write("Full name: ");
-            string name = Console.ReadLine();
-
-            Console.Write("Driver license: ");
-            string license = Console.ReadLine();
-
-            Console.Write("Phone: ");
-            string phone = Console.ReadLine();
-
-            Console.Write("Email: ");
-            string email = Console.ReadLine();
-
-            _customerService.RegisterCustomer(name, license, phone, email);
-
-            Console.WriteLine("Customer registered!");
-
-            Pause();
-        }
-
         private void ShowAvailableCars()
         {
             Console.Clear();
@@ -253,29 +279,6 @@ namespace CarRentalSys.ConsoleUI
                     $"{car.Brand} {car.Model} | " +
                     $"{car.Category} | " +
                     $"{car.PricePerDay} lv/day");
-            }
-
-            Pause();
-        }
-
-        private void ShowCustomerHistory()
-        {
-            Console.Clear();
-
-            Console.WriteLine("=== CUSTOMER HISTORY ===");
-
-            Console.Write("Customer ID: ");
-
-            int id = int.Parse(Console.ReadLine());
-
-            var rentals = _customerService.GetCustomerRentalHistory(id);
-
-            foreach (var rental in rentals)
-            {
-                Console.WriteLine(
-                    $"Rental ID: {rental.Id} | " +
-                    $"Car ID: {rental.CarId} | " +
-                    $"{rental.StartDate:d} -> {rental.EndDate}");
             }
 
             Pause();
@@ -316,6 +319,22 @@ namespace CarRentalSys.ConsoleUI
             Pause();
         }
 
+        private void CancelRental()
+        {
+            Console.Clear();
+
+            Console.Write("Rental ID: ");
+
+            int id = int.Parse(Console.ReadLine());
+
+            _rentalService.CancelRental(id);
+
+            Console.WriteLine("Rental cancelled!");
+
+            Pause();
+
+        }
+
         private void StartRental()
         {
             Console.Clear();
@@ -342,79 +361,6 @@ namespace CarRentalSys.ConsoleUI
             _rentalService.CompleteRental(id);
 
             Console.WriteLine("Rental completed!");
-
-            Pause();
-        }
-
-        private void CancelRental()
-        {
-            Console.Clear();
-
-            Console.Write("Rental ID: ");
-
-            int id = int.Parse(Console.ReadLine());
-
-            _rentalService.CancelRental(id);
-
-            Console.WriteLine("Rental cancelled!");
-
-            Pause();
-
-        }
-
-        private void ShowActiveRentals()
-        {
-            Console.Clear();
-
-            Console.WriteLine("=== ACTIVE RENTALS ===");
-
-            var rentals = _rentalService.GetActiveRentals();
-
-            foreach (var rental in rentals)
-            {
-                Console.WriteLine(
-                    $"Rental ID: {rental.Id} | " +
-                    $"Customer: {rental.CustomerId} | " +
-                    $"Car: {rental.CarId} | " +
-                    $"{rental.StartDate:d} -> {rental.EndDate:d}");
-            }
-
-            Pause();
-        }
-
-        private void FleetUsageReport()
-        {
-            Console.Clear();
-
-            Console.WriteLine("=== FLEET REPORT ===");
-
-            double usage = _rentalService.FleetUsageReport();
-
-            Console.WriteLine($"Fleet usage: {usage:F2}%");
-
-            Pause();
-        }
-
-        private void RevenueReport()
-        {
-            Console.Clear();
-
-            Console.WriteLine("=== REVENUE REPORT ===");
-
-            Console.Write("Start date: ");
-
-            DateTime start =
-                DateTime.Parse(Console.ReadLine());
-
-            Console.Write("End date: ");
-
-            DateTime end =
-                DateTime.Parse(Console.ReadLine());
-
-            decimal revenue =
-                _rentalService.GetRevenueForPeriod(start, end);
-
-            Console.WriteLine($"Revenue: {revenue} lv");
 
             Pause();
         }
@@ -488,31 +434,6 @@ namespace CarRentalSys.ConsoleUI
             Pause();
         }
 
-        private void UpdateCustomerContact()
-        {
-            Console.Clear();
-
-            Console.WriteLine("=== UPDATE CUSTOMER ===");
-
-            Console.Write("Customer ID: ");
-            int id = int.Parse(Console.ReadLine());
-
-            Console.Write("New phone: ");
-            string phone = Console.ReadLine();
-
-            Console.Write("New email: ");
-            string email = Console.ReadLine();
-
-            _customerService.UpdateCustomerContact(
-                id,
-                phone,
-                email);
-
-            Console.WriteLine("Customer updated!");
-
-            Pause();
-        }
-
         private void ReturnDeposit()
         {
             Console.Clear();
@@ -563,6 +484,86 @@ namespace CarRentalSys.ConsoleUI
             _carService.ReturnFromMaintenance(carId);
 
             Console.WriteLine("Car returned from maintenance!");
+
+            Pause();
+        }
+
+        private void ShowActiveRentals()
+        {
+            Console.Clear();
+
+            Console.WriteLine("=== ACTIVE RENTALS ===");
+
+            var rentals = _rentalService.GetActiveRentals();
+
+            foreach (var rental in rentals)
+            {
+                Console.WriteLine(
+                    $"Rental ID: {rental.Id} | " +
+                    $"Customer: {rental.CustomerId} | " +
+                    $"Car: {rental.CarId} | " +
+                    $"{rental.StartDate:d} -> {rental.EndDate:d}");
+            }
+
+            Pause();
+        }
+
+        private void ShowCustomerHistory()
+        {
+            Console.Clear();
+
+            Console.WriteLine("=== CUSTOMER HISTORY ===");
+
+            Console.Write("Customer ID: ");
+
+            int id = int.Parse(Console.ReadLine());
+
+            var rentals = _customerService.GetCustomerRentalHistory(id);
+
+            foreach (var rental in rentals)
+            {
+                Console.WriteLine(
+                    $"Rental ID: {rental.Id} | " +
+                    $"Car ID: {rental.CarId} | " +
+                    $"{rental.StartDate:d} -> {rental.EndDate}");
+            }
+
+            Pause();
+        }
+
+        private void FleetUsageReport()
+        {
+            Console.Clear();
+
+            Console.WriteLine("=== FLEET REPORT ===");
+
+            double usage = _rentalService.FleetUsageReport();
+
+            Console.WriteLine($"Fleet usage: {usage:F2}%");
+
+            Pause();
+        }
+
+        private void RevenueReport()
+        {
+            Console.Clear();
+
+            Console.WriteLine("=== REVENUE REPORT ===");
+
+            Console.Write("Start date: ");
+
+            DateTime start =
+                DateTime.Parse(Console.ReadLine());
+
+            Console.Write("End date: ");
+
+            DateTime end =
+                DateTime.Parse(Console.ReadLine());
+
+            decimal revenue =
+                _rentalService.GetRevenueForPeriod(start, end);
+
+            Console.WriteLine($"Revenue: {revenue} lv");
 
             Pause();
         }
