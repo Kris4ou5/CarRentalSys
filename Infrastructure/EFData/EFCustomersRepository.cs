@@ -31,8 +31,14 @@ namespace CarRentalSys.Infrastructure.EFData
         public void Save(Customer newCustomer)
         {
             if (newCustomer == null) throw new Exception("Customer cant be null");
-
-            _context.Customer.Add(newCustomer);
+            var existingCustomer = _context.Customer.FirstOrDefault(x => x.Id == newCustomer.Id);
+            if (existingCustomer != null)
+            {
+                existingCustomer.UpdateContactInfo(newCustomer.Phone, newCustomer.Email);
+                
+            }
+            else _context.Customer.Add(newCustomer);
+            
             _context.SaveChanges();
         }
     }

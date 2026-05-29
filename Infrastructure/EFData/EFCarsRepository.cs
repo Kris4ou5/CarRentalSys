@@ -34,9 +34,14 @@ namespace CarRentalSys.Infrastructure.EFData
         public void Save(Car newCar)
         {
             if (newCar == null) throw new Exception("Car cannot be null");
+            var existingCar = _context.Cars.FirstOrDefault(x => x.Id == newCar.Id);
+            if (existingCar != null)
+            {
+                existingCar.ChangeStatus(newCar.Status);     
+            }
+            else _context.Cars.Add(newCar);
 
-            _context.Cars.Add(newCar);
-
+            
             _context.SaveChanges();
         }
     }

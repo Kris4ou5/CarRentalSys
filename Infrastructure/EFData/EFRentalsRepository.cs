@@ -32,7 +32,14 @@ namespace CarRentalSys.Infrastructure.EFData
         public void Save(Rentals newRental)
         {
             if (newRental == null) throw new Exception("Rental cant be null");
-            _context.Rentals.Add(newRental);
+            var existingRental = _context.Rentals.FirstOrDefault(i => i.Id == newRental.Id);
+            if (existingRental != null)
+            {
+                existingRental.ChangeStatus(newRental.Status);
+                existingRental.AddInspection(newRental.Inspection);
+                existingRental.AddPayment(newRental.Payment);
+            }
+            else _context.Rentals.Add(newRental);
             _context.SaveChanges();
         }
     }

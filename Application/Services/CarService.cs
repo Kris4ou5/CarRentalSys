@@ -89,10 +89,11 @@ namespace CarRentalSys.Application.Services
                         }
                     }
 
-                    if (!carOverLap)
-                    {
-                        result.Add(car);
-                    }
+                    
+                }
+                if (!carOverLap)
+                {
+                    result.Add(car);
                 }
             }
             return result;
