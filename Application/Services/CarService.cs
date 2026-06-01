@@ -80,16 +80,15 @@ namespace CarRentalSys.Application.Services
                 carOverLap = false;
                 foreach (var rental in rentals)
                 {
-                    
-                    if (car.Id  == rental.CarId)
+
+                    if (car.Id == rental.CarId)
                     {
-                        if(rental.StartDate <= end && rental.EndDate >= start)
+                        if (rental.StartDate <= end && rental.EndDate >= start)
                         {
                             carOverLap = true;
                         }
                     }
-
-                    
+  
                 }
                 if (!carOverLap)
                 {
