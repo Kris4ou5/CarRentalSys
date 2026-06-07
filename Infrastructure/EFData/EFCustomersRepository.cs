@@ -34,7 +34,7 @@ namespace CarRentalSys.Infrastructure.EFData
             var existingCustomer = _context.Customer.FirstOrDefault(x => x.Id == newCustomer.Id);
             if (existingCustomer != null)
             {
-                existingCustomer.UpdateContactInfo(newCustomer.Phone, newCustomer.Email);
+                existingCustomer.UpdateContactInfo(newCustomer.FullName,newCustomer.DriverLicenseNumber,newCustomer.Phone, newCustomer.Email);
                 
             }
             else _context.Customer.Add(newCustomer);

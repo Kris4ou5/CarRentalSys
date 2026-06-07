@@ -234,7 +234,9 @@ namespace CarRentalSys.Application.Services
             return revenue;
         }
 
-
-
+        public IReadOnlyList<Rentals> GetAllRentals()
+        {
+            return _rentalRepo.GetAll();
+        }
     }
 }

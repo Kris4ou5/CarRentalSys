@@ -8,7 +8,7 @@ using CarRentalSys.Domain.Entities;
 
 namespace CarRentalSys.Infrastructure.EFData
 {
-    internal class EFRentalsRepository : IRentalRepository
+    public class EFRentalsRepository : IRentalRepository
     {
         public readonly AppDbContext _context;
 

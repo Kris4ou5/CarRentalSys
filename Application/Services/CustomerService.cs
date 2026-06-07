@@ -55,18 +55,24 @@ namespace CarRentalSys.Application.Services
             if (string.IsNullOrEmpty(customer.Phone)) throw new ArgumentException("Невалиден телефонен номер.");
         }
 
-        public void UpdateCustomerContact(int customerId, string phone, string email)
+        public void UpdateCustomerContact(int customerId, string fullname, string driverlicense,string phone, string email)
         {
             var customer = _customerRepository.GetById(customerId);
 
             if (customer == null)
                 throw new Exception("Customer not found");
 
-            customer.UpdateContactInfo(phone, email);
-
+            customer.UpdateContactInfo(fullname, driverlicense,phone, email);
+           
             ValidateCustomer(customer);
 
             _customerRepository.Save(customer);
+        }
+
+
+        public IReadOnlyList<Customer> GetAllCustomers()
+        {
+            return _customerRepository.GetAll();
         }
     }
 }

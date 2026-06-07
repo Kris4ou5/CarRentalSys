@@ -189,14 +189,21 @@ namespace CarRentalSys.ConsoleUI
             Console.Write("Customer ID: ");
             int id = int.Parse(Console.ReadLine());
 
+            string fullname = "";
+            string driverlicense = "";
+
             Console.Write("New phone: ");
             string phone = Console.ReadLine();
 
             Console.Write("New email: ");
             string email = Console.ReadLine();
 
+
+
             _customerService.UpdateCustomerContact(
                 id,
+                fullname,
+                driverlicense,
                 phone,
                 email);
 

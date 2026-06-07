@@ -31,8 +31,10 @@ namespace CarRentalSys.Domain.Entities
             Email = email;
         }
 
-        public void UpdateContactInfo(string phone, string email) 
+        public void UpdateContactInfo(string fullName, string driverLicenseNumber, string phone, string email) 
         {
+            FullName = fullName;
+            DriverLicenseNumber = driverLicenseNumber;
             Phone = phone;
             Email = email;
         }
